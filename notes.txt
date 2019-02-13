@@ -1,0 +1,13 @@
+Referencias 
+
+https://codeburst.io/implementing-a-complete-binary-heap-in-javascript-the-priority-queue-7d85bd256ecf
+
+https://qiao.github.io/PathFinding.js/visual/
+
+
+tablero
+https://medium.com/cloudaper/how-to-create-a-flexible-square-grid-with-css-grid-layout-ea48baf038f3
+
+
+https://www.youtube.com/watch?v=KNXfSOx4eEE
+

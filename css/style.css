@@ -1,0 +1,25 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+}
+.grid-board {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(2rem, 1fr));
+    grid-auto-rows: 1fr;
+    grid-gap: 4px;
+}
+
+
+
+.cell {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    background-color: rgb(219, 211, 211);
+}
