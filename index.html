@@ -1,71 +1,54 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>A Search Algorithm</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
-
+    <link href="https://fonts.googleapis.com/css?family=ZCOOL+QingKe+HuangYou" rel="stylesheet">
     <script src="js/vendors/jquery-3.3.1.min.js"></script>
     <script src="js/app.js"></script>
 </head>
+
 <body>
+    <h1 class="title">Algoritmo de búsqueda A<sup>*</sup></h1>
     <div class="main-container">
-        <div class="grid-board">
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div><div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div><div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div><div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div><div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div><div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div><div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div><div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div><div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
+        <div class="controls-container">
+            <h1>Configuración</h1>
+            <div class="control-menu">
+                <div class="size-container">
+                    <div>
+                        Columnas (Máx. 35): <input class="col-inp size-inp" type="number" max="35" value="10">
+
+                    </div>
+                    <div>
+                        Filas: <input class="row-inp size-inp" type="number" value="10">
+                    </div>
+                </div>
+                <div class="elements-container">
+                    <h3>Elementos</h3>
+                    Inicio: <input id="start-element" type="radio" name="element">
+                    Meta: <input id="finish-element" type="radio" name="element">
+                    Obstaculos: <input id="obstacle-element" type="radio" name="element">
+                </div>
+                <a class="btn create-btn" href="#">Generar tablero</a>
+                <a href="#" class="btn execute-btn">Ejecutar</a>
+
+            </div>
+        </div>
+        <div class="table-board">
+            <!-- 34 horizontal blocks MAX -->
+            <table class="board">
+                <tbody>
+                    <tr>
+                        <td>Crea una nueva tabla...</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </body>
+
 </html>
