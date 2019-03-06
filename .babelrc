@@ -1,0 +1,6 @@
+{
+    /* Se encarga de pasar de ES6 a ES5 */
+    "presets" : [
+        "env"
+    ]
+}
