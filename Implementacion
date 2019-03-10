@@ -1,0 +1,5 @@
+Las casillas almacenaran una valor que representa su altura
+
+Se debe suministrar un valor inicial antes de ejecutar el algoritmo que se 
+utilize para saber si se puede pasar por una casilla o no dependiendo de su 
+altura 

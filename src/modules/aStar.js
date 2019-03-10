@@ -90,6 +90,7 @@ export default class AStar {
         
         return path;
     }
+    
 }
 
 //babel-core babel-loader babel-preset-env
