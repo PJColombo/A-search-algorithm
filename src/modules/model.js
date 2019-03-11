@@ -1,44 +1,49 @@
 import Node from './node';
 
 export default class Board {
-    //TODO: Need to receive a two-dimension array fill with weight values for every cell. 
-    constructor(rowSize, colSize) {
+    constructor(rowSize, colSize, random) {
         this.rowSize = rowSize;
         this.colSize = colSize;
-        this.matrix = [...Array(rowSize)].map((e, rowPos) => {           
+        /* this.matrix = [...Array(rowSize)].map((e, rowPos) => {           
             return  [...Array(colSize)].map((e, colPos) => {   
                 return new Node(rowPos, colPos, 1)
             });
-        });
-        this.startCell = {};
-        this.finishCell = {};
-        this.obstacles = [];
-        
+        }); */
+        this.matrix = this.generateMatrix(random);
+        this._startCell = {};
+        this._finishCell = {};
     }
 
-    getStartCell() {
-        return this.startCell;
+    get startCell() {
+        return this._startCell;
     }
-    setStartCell(row, col) {
-        console.log(this.matrix);
-        
-        this.matrix[row][col].startCell = true;
-        this.startCell = {
-            row,
-            col
-        };
+    set startCell(cell) {
+        if(this._startCell && this._startCell.hasOwnProperty("row") && this._startCell.hasOwnProperty("col"))
+            this.matrix[this._startCell.row][this._startCell.col].startCell = false;
+        if(cell && cell.hasOwnProperty("row") && cell.hasOwnProperty("col"))
+            this.matrix[cell.row][cell.col].startCell = true;
+        this._startCell = cell;
+    }    
+
+    get finishCell() {
+        return this._finishCell;
+    }
+    set finishCell(cell) {
+        if(this._finishCell && this._finishCell.hasOwnProperty("row") && this._finishCell.hasOwnProperty("col"))
+            this.matrix[this._finishCell.row][this._finishCell.col].finishCell = false;
+        if(cell && cell.hasOwnProperty("row") && cell.hasOwnProperty("col"))
+            this.matrix[cell.row][cell.col].finishCell = true;
+        this._finishCell = cell;
     }
 
-    getFinishCell(row, col) {
-        return this.finishCell;
+    getWeightCell(cell) {
+        if(cell && cell.hasOwnProperty("row") && cell.hasOwnProperty("col"))
+            return this.matrix[cell.row][cell.col].weight;
     }
-
-    setFinishCell(row, col) {
-        this.matrix[row][col].finishCell = true;
-        this.finishCell = {
-            row, 
-            col
-        };
+    setWeightCell(cell) {
+        if(cell && cell.hasOwnProperty("row") && cell.hasOwnProperty("col")
+            && cell.hasOwnProperty("weight"))
+            this.matrix[cell.row][cell.col].weight = cell.weight;
     }
     setBlockedCell(row, col) {
         this.matrix[row][col].blockedCell = !this.matrix[row][col].blockedCell;
@@ -47,7 +52,6 @@ export default class Board {
     expand(node) {
         let neighbours = [];
         let xPos = node.x, yPos = node.y;
-        console.log(node);
         
         if(this.matrix[xPos - 1]) {
             // Left 
@@ -83,6 +87,40 @@ export default class Board {
             neighbours.push(this.matrix[xPos][yPos + 1]);
         
         return neighbours; 
+    }
+
+    restart() {
+        this.matrix.forEach(col => {
+            col.forEach(node => {
+                node.restart();
+            });
+        });
+
+    }
+
+    generateMatrix(random) {
+        let weight1 = 5, weight2 = 10, weight3 = 15;
+        let thresholdPercentage = 0.3;
+        let r;
+        let matrix = [...Array(this.rowSize)].map((e, rowPos) => {
+            return [...Array(this.colSize)].map((e, colPos) => {
+                let n = new Node(rowPos, colPos, 1);
+                r = Math.random();
+                if(random) {
+                    if(r < thresholdPercentage)
+                        n.blockedCell = true;
+                    else if(r >= thresholdPercentage && r < thresholdPercentage + 0.15)
+                        n.weight = weight1;
+                    else if(r >= thresholdPercentage + 0.15 && r < thresholdPercentage + 0.25)
+                        n.weight = weight2;
+                    else if(r >= thresholdPercentage + 0.25 && r < thresholdPercentage + 0.35)
+                        n.weight = weight3;
+                }
+                
+                return n;
+            });
+        });
+        return matrix;
     }
 }
 

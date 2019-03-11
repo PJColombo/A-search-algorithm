@@ -26,8 +26,10 @@ export default class AStar {
      * @param {*} board 
      */
     search(board) {
-        let {row: sRow, col: sCol} = board.getStartCell(),
-            {row: fRow, col: fCol} = board.getFinishCell();
+        let {row: sRow, col: sCol} = board.startCell,
+            {row: fRow, col: fCol} = board.finishCell;
+        console.log(sRow, sCol);
+        
         let startNode, endNode, currentNode;
         startNode = board.matrix[sRow][sCol];
         endNode = board.matrix[fRow][fCol];
@@ -91,6 +93,11 @@ export default class AStar {
         return path;
     }
     
+    clear() {
+        this.openList.clear();
+        this.closeList.clear();
+        this.openListTrack.clear();
+    }
 }
 
 //babel-core babel-loader babel-preset-env

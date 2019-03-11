@@ -9,10 +9,17 @@ export default class Node {
         this.visited = false;
         this.closed = false;
         this.blockedCell = false;
-        // this.weight = weight; 
-        this.weight = 1;
+        this.weight = weight;
         this.startCell = false;
         this.finishCell = false;
+    }
+
+    restart() {
+        this.parent = null;
+        this.g  = this.f = this.h = 0;
+        this.visited = this.closed =  
+            this.startCell = this.finishCell = false;
+        // this.weight = 1;
     }
 
     get key() {

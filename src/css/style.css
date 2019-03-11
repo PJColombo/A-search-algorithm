@@ -16,6 +16,10 @@ body {
 
 }
 
+span {
+    display: inline-block;
+    margin: 2% 0;
+}
 .title {
     text-align: center;
     font-size: 400%;
@@ -62,7 +66,30 @@ body {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+}
 
+.btn-container  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.btn-container button {
+    width: 50%;
+    margin-bottom: 2%;
+    outline: none;
+    transition: transform 0.2s, background-color 0.5s;
+    font-family: inherit;
+    background-color: rgba(226, 225, 225, 0.699);
+}
+
+.btn-container button:hover {
+    background-color: rgba(255, 255, 255, 0.856);    
+    cursor: pointer;
+}
+.btn-container button:active {
+    transform: scale(0.90);
 }
 
 .size-container {
@@ -78,6 +105,7 @@ body {
 }
 
 .elements-container {
+    width: 60%;
     margin-top: 5%;
 }
 
@@ -90,6 +118,13 @@ input[type=radio] {
     vertical-align: middle;
 }
 
+#weight-inp {
+    border: transparent;
+    border-radius: 10px 10px 10px 10px;
+    padding: 1%;
+    width: 20%;
+    outline: none;
+}
 
 .active-radio {
     color: gold;
@@ -139,8 +174,6 @@ input[type=radio] {
     transform: scale(0.95);
 }
 
-
-
 .cell {
     height: 30px;
     margin: 0.1%;
@@ -148,7 +181,14 @@ input[type=radio] {
     background: #d6d9df6e;
     /* fallback for old browsers */
     /* background-color: rgb(128, 82, 69); */
-    border: 1px solid transparent;
+    border: 2px solid transparent;
+    transition: border-color 0.2s;
+    vertical-align: top;
+}
+
+.cell:hover {
+    border: 2px solid rgb(25, 43, 77);
+    cursor: pointer;
 }
 
 .blocked {
@@ -158,13 +198,25 @@ input[type=radio] {
     background-color: inherit;
 }
 
+.checkpoint {
+    background: url("../resources/checkpoint-icon.png");
+    background-size: contain;
+    background-color:inherit;
+    color: rgb(235, 211, 0);
+    vertical-align: text-top;
+}
+
+.weighted {
+    transform: scale(0.85);
+}
 .editable {
     cursor: pointer;
 }
 
 .path {
     background-color: orange;
-    animation: brightness-pulse 2s infinite;
+    border: 1px solid yellow;
+    animation: brightness-pulse 1s infinite;
 }
 
 .start {
