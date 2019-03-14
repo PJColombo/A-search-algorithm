@@ -1,4 +1,3 @@
-// import BinaryHeap from './binaryHeap';
 import HeuristicFactory from './heuristicFactory';
 import { FibonacciHeap } from '@tyriar/fibonacci-heap';
 
@@ -27,10 +26,9 @@ export default class AStar {
      */
     search(board) {
         let {row: sRow, col: sCol} = board.startCell,
-            {row: fRow, col: fCol} = board.finishCell;
-        console.log(sRow, sCol);
-        
+            {row: fRow, col: fCol} = board.finishCell;        
         let startNode, endNode, currentNode;
+
         startNode = board.matrix[sRow][sCol];
         endNode = board.matrix[fRow][fCol];
         
@@ -86,10 +84,6 @@ export default class AStar {
             path.unshift(currentNode);
             currentNode = currentNode.parent;
         }
-        console.log("Path");
-        console.log(path);
-        
-        
         return path;
     }
     
@@ -97,6 +91,10 @@ export default class AStar {
         this.openList.clear();
         this.closeList.clear();
         this.openListTrack.clear();
+    }
+
+    setHeuristicMethod(heuristic) {
+        this.heuristicMethod = HeuristicFactory.getInstance().getHeuristic(heuristic);
     }
 }
 

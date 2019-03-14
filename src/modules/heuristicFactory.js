@@ -39,6 +39,15 @@ export default class HeuristicFactory {
 
                     return Math.sqrt(op1 + op2);
                 }
+            default:
+                return (node1, node2) => {
+                    let x1 = node1.x, x2 = node2.x,
+                        y1 = node1.y, y2 = node2.y;
+                    let op1 = Math.pow(Math.abs(x2 - x1), 2),
+                        op2 = Math.pow(Math.abs(y2 - y1), 2);
+
+                    return Math.sqrt(op1 + op2);
+                }
         }
     }
 }

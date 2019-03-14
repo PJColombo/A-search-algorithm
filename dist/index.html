@@ -16,7 +16,17 @@
         <div class="controls-container">
             <h1>Configuración</h1>
             <div class="control-menu">
+                <div class="heuristic-method-container">
+                    Metodo heurístico: 
+                    <select id="heuristic-select">
+                        <option value="manhattan">Manhattan</option>
+                        <option value="diagonal">Diagonal</option>
+                        <option value="euclidean" selected="selected">Euclídeo</option>
+                    </select>
+                </div>
+                <hr>
                 <div class="size-container">
+                    <h3>Tamaño</h3>
                     <div>
                         Columnas (Máx. 35): <input class="col-inp size-inp" type="number" max="35" value="10">
 
@@ -25,6 +35,7 @@
                         Filas: <input class="row-inp size-inp" type="number" value="10">
                     </div>
                 </div>
+                <hr>
                 <div class="elements-container">
                     <h3>Elementos</h3>
                     <span>Inicio:</span><input id="start-element" class="radio-btn" type="radio" name="element">
@@ -38,11 +49,30 @@
                     <span>Peso: </span><input id="weight-element" class="radio-btn weight-radio" type="radio" name="element">
                     <input id="weight-inp" type="number" min="1" value="1">
                 </div>
+                <hr>
                 <div class="btn-container">
-                    <button class="btn random-board-btn">Generar tablero aleatorio</button>
-                    <a class="btn create-btn" href="#">Generar tablero</a>
-                    <a href="#" class="btn execute-btn">Ejecutar</a>
+                    <div class="random-container">
+                        <h3>Aleatorio</h3>
+                            % obstáculos y ponderadas: <select id="wall-percentage-sel">
+                                <option value="0.1">10%</option>
+                                <option value="0.2">20%</option>
+                                <option value="0.3" selected="selected">30%</option>
+                                <option value="0.4">40%</option>
+                                <option value="0.5">50%</option>
+                                <option value="0.6">60%</option>
+                            </select>
+                            Celdas ponderadas: 
+                            <div class="weight-cells">
+                                <p>1: <input type="number" class="weight-inp" id="weight-inp-1" min="2" value="2"></p>
+                                <p>2: <input type="number" class="weight-inp" id="weight-inp-2" min="2" value="5"></p>
+                                <p>3: <input type="number" class="weight-inp" id="weight-inp-3" min="2" value="8"></p>
+                            </div>
+                        <button class="btn random-board-btn">Generar tablero aleatorio</button>
+                    </div>
                 </div>
+                <hr>
+                <a class="btn create-btn" href="#">Generar tablero</a>
+                <a href="#" class="btn execute-btn">Ejecutar</a>
 
             </div>
         </div>

@@ -14,12 +14,13 @@ export default class Node {
         this.finishCell = false;
     }
 
-    restart() {
+    restart(shallowRestart = false) {
         this.parent = null;
         this.g  = this.f = this.h = 0;
-        this.visited = this.closed =  
+        this.visited = this.closed = false;
+        if(!shallowRestart)  
             this.startCell = this.finishCell = false;
-        // this.weight = 1;
+
     }
 
     get key() {
@@ -57,7 +58,6 @@ export default class Node {
         /* Origin node is in a diagonal position */
         if(originNode && this.x !== originNode.x && this.y !== originNode.y)
             return Math.sqrt(2) * this.weight;
-        else
             return this.weight;
     }
 }

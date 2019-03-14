@@ -1,17 +1,33 @@
 import Node from './node';
 
 export default class Board {
-    constructor(rowSize, colSize, random) {
+    constructor(rowSize, colSize, random, w1, w2, w3, percentage) {
         this.rowSize = rowSize;
         this.colSize = colSize;
-        /* this.matrix = [...Array(rowSize)].map((e, rowPos) => {           
-            return  [...Array(colSize)].map((e, colPos) => {   
-                return new Node(rowPos, colPos, 1)
-            });
-        }); */
+        /* Setting random parameters */        
+        if(percentage)
+            this._obstaclesPercentage = percentage;
+        else
+            this._obstaclesPercentage = 0.3;    
+        if(w1)
+            this._weight1 = w1;
+        else
+            this._weight1 = 2;
+        
+        if(w2)
+            this._weight2 = w2;
+        else
+            this._weight2 = 5;
+        
+        if(w3)
+            this._weight3 = w3;
+        else
+            this._weight3 = 8;
+
         this.matrix = this.generateMatrix(random);
         this._startCell = {};
         this._finishCell = {};
+
     }
 
     get startCell() {
@@ -36,6 +52,19 @@ export default class Board {
         this._finishCell = cell;
     }
 
+    set obstaclesPercentage(percentage) {
+        this._obstaclesPercentage = percentage;        
+    }
+
+    set weight1(weight) {
+        this._weight1 = weight;
+    }
+    set weight2(weight) {
+        this._weight1 = weight;
+    }
+    set weight3(weight) {
+        this._weight3 = weight;
+    }
     getWeightCell(cell) {
         if(cell && cell.hasOwnProperty("row") && cell.hasOwnProperty("col"))
             return this.matrix[cell.row][cell.col].weight;
@@ -89,32 +118,30 @@ export default class Board {
         return neighbours; 
     }
 
-    restart() {
+    restart(shallowRestart = false) {
         this.matrix.forEach(col => {
             col.forEach(node => {
-                node.restart();
+                node.restart(shallowRestart);
             });
         });
 
     }
 
     generateMatrix(random) {
-        let weight1 = 5, weight2 = 10, weight3 = 15;
-        let thresholdPercentage = 0.3;
         let r;
         let matrix = [...Array(this.rowSize)].map((e, rowPos) => {
             return [...Array(this.colSize)].map((e, colPos) => {
                 let n = new Node(rowPos, colPos, 1);
                 r = Math.random();
                 if(random) {
-                    if(r < thresholdPercentage)
+                    if(r < this._obstaclesPercentage)
                         n.blockedCell = true;
-                    else if(r >= thresholdPercentage && r < thresholdPercentage + 0.15)
-                        n.weight = weight1;
-                    else if(r >= thresholdPercentage + 0.15 && r < thresholdPercentage + 0.25)
-                        n.weight = weight2;
-                    else if(r >= thresholdPercentage + 0.25 && r < thresholdPercentage + 0.35)
-                        n.weight = weight3;
+                    else if(r >= this._obstaclesPercentage && r < this._obstaclesPercentage + 0.15)
+                        n.weight = this._weight1;
+                    else if(r >= this._obstaclesPercentage + 0.15 && r < this._obstaclesPercentage + 0.25)
+                        n.weight = this._weight2;
+                    else if(r >= this._obstaclesPercentage + 0.25 && r < this._obstaclesPercentage + 0.35)
+                        n.weight = this._weight3;
                 }
                 
                 return n;
